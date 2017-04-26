@@ -8,7 +8,6 @@
 #include<iostream>
 #include<string>
 
-
 using std::cout;
 using std::string;
 using std::endl;
@@ -76,7 +75,6 @@ void SetTestList::listToArray(int l, int *arr) {
 	while(getline(myfile, line)) {
 		arr[count] = stoi(line); // conver string to int!!!! and make array
 		count++;
-	}
- 	 
+	} 	 
 }
 #endif
