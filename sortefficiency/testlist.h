@@ -26,11 +26,7 @@ public:
 };
 
 SetTestList::SetTestList() {
-	srand(time(0));
-	for(int i = 0; i < 3; i++ ) {
-		std::ofstream myfile(_caseList[i]);
-		myfile.close();		
-	}	
+	srand(time(0));	
 }
 
 void SetTestList::printToFile(int i, int l) {	
@@ -42,18 +38,30 @@ void SetTestList::printToFile(int i, int l) {
 }
 
 void SetTestList::bestCase(int len) {
+	// creat empty file
+	std::ofstream myfile(_caseList[0]);
+	myfile.close();
+	
 	for(int i = 1; i <= len; i++) {
 		printToFile(i, 0);
 	}
 }
 
 void SetTestList::worstCase(int len) {
+	// creat empty file
+	std::ofstream myfile(_caseList[1]);
+	myfile.close();
+	
 	for(int i = len; i > 0; i--) {
 		printToFile(i, 1);
 	}
 }
 
 void SetTestList::averageCase(int len) {
+	// creat empty file
+	std::ofstream myfile(_caseList[2]);
+	myfile.close();
+	
 	int ranNum;	
 	for(int i = 1; i <= len; i++) {
 		ranNum = (rand()%len+1);
@@ -68,6 +76,7 @@ void SetTestList::listToArray(int l, int *arr) {
 	while(getline(myfile, line)) {
 		arr[count] = stoi(line); // conver string to int!!!! and make array
 		count++;
-	} 	 
+	}
+ 	 
 }
 #endif

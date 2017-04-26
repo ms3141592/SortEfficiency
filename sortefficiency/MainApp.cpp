@@ -11,24 +11,38 @@
 
 
 #include "testlist.h"
+#include "sortalgs.h"
 
 int main() {
 	
-	int listLen = 1000;
+	int listLen = 100000;
 	int listArray[listLen];
 	
 	SetTestList setlist;
+	SortAlgs sortalgs;
 	
 	setlist.bestCase(listLen);
 	setlist.worstCase(listLen);
 	setlist.averageCase(listLen);
 	
-	setlist.listToArray(2, listArray);
+	setlist.listToArray(0, listArray);	
+	std::cout << "start best case" << std::endl;
+	sortalgs.bubbleSort(listLen, listArray);
 	
+	setlist.listToArray(1, listArray);	
+	std::cout << "start worst case" << std::endl;	
+	sortalgs.bubbleSort(listLen, listArray);
+	
+	setlist.listToArray(2, listArray);	
+	std::cout << "start average case" << std::endl;	
+	sortalgs.bubbleSort(listLen, listArray);
+	
+	
+	/*
 	for(int i = 0; i < listLen; i++) {
-		std:cout << listArray[i] << std::endl;
+		std::cout << listArray[i] << endl;
 	}
-
+*/
 	return 0;
 }
 
