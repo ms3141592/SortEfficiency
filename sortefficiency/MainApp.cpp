@@ -9,14 +9,20 @@
 */
 #include<iostream>
 
-#include "testlist.h"
-#include "sortalgs.h"
+#include "userinterface.h"
 
-int main() {
-	
-	int listLen = 10000;
+
+int main() {	
+	int listLen = 20000;
 	int listArray[listLen];
 	
+	UserInterface ui;
+	
+	ui.mainMenu();
+	
+	
+	
+/*
 	SetTestList setlist;
 	SortAlgs sortalgs;
 	
@@ -65,7 +71,7 @@ int main() {
 	setlist.listToArray(2, listArray);	
 	std::cout << "start average case" << std::endl;	
 	sortalgs.quickSortCall(listLen, listArray);	
-
+*/
 	return 0;
 }
 

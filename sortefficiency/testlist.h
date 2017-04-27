@@ -6,6 +6,7 @@
 #include<ctime>
 #include<fstream>
 #include<iostream>
+#include<sstream>
 #include<string>
 
 using std::cout;
@@ -71,9 +72,12 @@ void SetTestList::averageCase(int len) {
 void SetTestList::listToArray(int l, int *arr) {
 	string line;
 	int count = 0;
+	int i_line;
 	std::ifstream myfile(_caseList[l]);
 	while(getline(myfile, line)) {
-		arr[count] = stoi(line); // conver string to int!!!! and make array
+		std::istringstream (line) >> i_line; // conver string to int!!!!
+		arr[count] = i_line;// make int array
+		//arr[count] = stoi(line); // conver string to int!!!! and make array
 		count++;
 	} 	 
 }
