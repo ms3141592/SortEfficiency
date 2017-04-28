@@ -24,13 +24,13 @@ private:
 	void sortdataMenu();
 	void sortData(int);
 	void runBubbleSort(int);
+	void runInsertionSort(int);
 public:
 	UserInterface();
 	void runTests();
 };
 
 UserInterface::UserInterface() {
-	elementSize = 3;
 	menu = true;
 	game = true; 
 	generate = false;
@@ -132,19 +132,18 @@ void UserInterface::sortdataMenu() {
 	cout << "Type of sort?\n"
 		<< "-------------\n\n";
 	cout << "(1) Bubble\n" // 
-		<< "(2) Selection\n" //
+		<< "(2) Selection\n" // not active
 		<< "(3) Insertion\n" //
-		<< "(4) Merge\n" //
-		<< "(5) Quick\n" //
-		<< "(6) All (Warning! may take a long time)\n"
-		<< "(7) Main Menu\n>> ";
+		<< "(4) Merge\n" // not active
+		<< "(5) Quick\n" // not active
+		<< "(6) Main Menu\n>> ";
 	cin >> choice;
 		
 	switch(choice) {
-		case 1 ... 6:
+		case 1 ... 5:
 			sortData(choice);
 			break;
-		case 7:
+		case 6:
 			menu = true;
 			sort = false;
 			break;
@@ -170,18 +169,29 @@ void UserInterface::sortData(int choice) {
 	switch(choice) {
 		
 		case 1:
-			cout << "\telement size = " << elementSize << endl; // 
+			// bubbleSort
+			cout << "\tbefore runBubbleSort() element size 0 = " << elementSize << endl; // test
+
 			runBubbleSort(testChoice);
-			cout << "\telement size = " << elementSize << endl;
+			cout << "\t after runBubbleSort() element size 3 = " << elementSize << endl; // test
+
 			break;
 		case 2:
-			
+			// selectionSort
+
 			break;
 		case 3:
-			
+			// insertrionSort
+			cout << "\tbefore runInsertionSort() element size 0 = " << elementSize << endl; // test
+
+			runInsertionSort(testChoice);
+			cout << "\t after runInsertionSort() element size 3 = " << elementSize << endl; // test
 			break;
 		case 4:
-			
+			// mergeSort
+			break;
+		case 5:
+			// quickSort
 			break;
 	}
 }
@@ -191,20 +201,33 @@ void UserInterface::runBubbleSort(int testChoice) {
 	switch(testChoice) {
 		case 1:
 			tlist.listToArray(0, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
 			std::cout << "start best case" << std::endl;				
 			runTime = salgs.bubbleSort(elementSize, arrayList);
+			cout << "\tafter bubbleSort() element size 2 = " << elementSize << endl; // test
+			
 			cout << runTime << " seconds\n";
 			break;
 		case 2:
 			tlist.listToArray(1, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+
+			
 			cout << "start worst case" << std::endl;				
 			runTime = salgs.bubbleSort(elementSize, arrayList);
-			cout << runTime << " seconds\n";				
+				cout << "\tafter bubbleSort() element size 2 = " << elementSize << endl; // test
+				
+			cout << runTime << " seconds\n";			
 			break;
 		case 3:
 			tlist.listToArray(2, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
 			std::cout << "start average case" << std::endl;
 			runTime = salgs.bubbleSort(elementSize, arrayList);
+			cout << "\tafter bubbleSort() element size 2 = " << elementSize << endl; // test
+			
 			cout << runTime << " seconds\n";
 			break;
 		case 4:
@@ -233,6 +256,68 @@ void UserInterface::runBubbleSort(int testChoice) {
 			break;
 	}
 }
+
+void UserInterface::runInsertionSort(int testChoice) {
+	double runTime;
+	switch(testChoice) {
+		case 1:
+			tlist.listToArray(0, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << "\tafter insertionSort() element size 2 = " << elementSize << endl; // test
+			
+			cout << runTime << " seconds\n";
+			break;
+		case 2:
+			tlist.listToArray(1, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+
+			
+			cout << "start worst case" << std::endl;				
+			runTime = salgs.insertionSort(elementSize, arrayList);
+				cout << "\tafter insertionSort() element size 2 = " << elementSize << endl; // test
+				
+			cout << runTime << " seconds\n";			
+			break;
+		case 3:
+			tlist.listToArray(2, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
+			std::cout << "start average case" << std::endl;
+			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << "\tafter insertionSort() element size 2 = " << elementSize << endl; // test
+			
+			cout << runTime << " seconds\n";
+			break;
+		case 4:
+			tlist.listToArray(0, arrayList);
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+			
+			tlist.listToArray(1, arrayList);
+			std::cout << "start worst case" << std::endl;		
+			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+	
+			tlist.listToArray(2, arrayList);
+			std::cout << "start average case" << std::endl;		
+			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+	
+			break;
+		case 5:
+			menu = true;
+			sort = false;
+			break;
+		default:
+			cout << "invalid entry\n";
+			break;
+	}
+}
+
 
 void UserInterface::runTests() {
 	while(game) {
