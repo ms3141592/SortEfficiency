@@ -16,33 +16,34 @@ private:
     double _duration;
     void quickSort(int, int, int*);
 public:
-	void bubbleSort(int, int*);
+	double bubbleSort(int, int*);
 	void insertionSort(int, int*);
 	void quickSortCall(int, int*);
 };
 
-void SortAlgs::bubbleSort(int len, int *arr) {
-		_start = clock(); // start timing
-		
-		int swap, temp;
-		for(int i = 0; i < len; i++) {
-			swap = 0;
-			for(int j = 0; j < len; j++) {
-				if(arr[j] < arr[j-1]) {
-					swap = 1; // the array is not yet sorted
-					temp = arr[j-1];
-					arr[j-1] = arr[j];
-					arr[j] = temp;
-				}	
-			}
-			if(swap==0) { // the array is sorted 
-				break;
-			}
+double SortAlgs::bubbleSort(int len, int *arr) {
+	_start = clock(); // start timing
+	
+	int swap, temp;
+	for(int i = 0; i < len; i++) {
+		swap = 0;
+		for(int j = 0; j < len; j++) {
+			if(arr[j] < arr[j-1]) {
+				swap = 1; // the array is not yet sorted
+				temp = arr[j-1];
+				arr[j-1] = arr[j];
+				arr[j] = temp;
+			}	
 		}
-		_end = clock(); // end timing
-		_duration = ((double)(_end - _start))/CLOCKS_PER_SEC; // compute to seconds		
-		cout << _duration << endl;
+		if(swap==0) { // the array is sorted 
+			break;
+		}
 	}
+	_end = clock(); // end timing
+	_duration = ((double)(_end - _start))/CLOCKS_PER_SEC; // compute to seconds		
+	//cout << _duration << endl;
+	return _duration;
+}
 	
 void SortAlgs::insertionSort(int len, int *arr) {
 	_start = clock(); // start timing

@@ -13,23 +13,23 @@ using std::cout;
 using std::string;
 using std::endl;
 
-class SetTestList {
+class TestList {
 private:
 	string _caseList[3] = {"best_case.txt", "worst_case.txt", "average_case.txt"};
 	void printToFile(int, int);
 public:
-	SetTestList();
+	TestList();
 	void bestCase(int);
 	void worstCase(int);
 	void averageCase(int); //
 	void listToArray(int, int*);
 };
 
-SetTestList::SetTestList() {
+TestList::TestList() {
 	srand(time(0));	
 }
 
-void SetTestList::printToFile(int i, int l) {	
+void TestList::printToFile(int i, int l) {	
 	std::ofstream myfile(_caseList[l], std::ios::app);
 	if (myfile.is_open()) {
 		myfile << i << "\n";
@@ -37,7 +37,7 @@ void SetTestList::printToFile(int i, int l) {
 	}
 }
 
-void SetTestList::bestCase(int len) {
+void TestList::bestCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[0]);
 	myfile.close();
@@ -47,7 +47,7 @@ void SetTestList::bestCase(int len) {
 	}
 }
 
-void SetTestList::worstCase(int len) {
+void TestList::worstCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[1]);
 	myfile.close();
@@ -57,7 +57,7 @@ void SetTestList::worstCase(int len) {
 	}
 }
 
-void SetTestList::averageCase(int len) {
+void TestList::averageCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[2]);
 	myfile.close();
@@ -69,7 +69,7 @@ void SetTestList::averageCase(int len) {
 	}
 }
 
-void SetTestList::listToArray(int l, int *arr) {
+void TestList::listToArray(int l, int *arr) {
 	string line;
 	int count = 0;
 	int i_line;

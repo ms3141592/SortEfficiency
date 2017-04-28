@@ -10,20 +10,21 @@
 #include<iostream>
 
 #include "userinterface.h"
+#include "testlist.h"
+#include "sortalgs.h"
 
 
 int main() {	
-	int listLen = 20000;
-	int listArray[listLen];
 	
+
 	UserInterface ui;
 	
-	ui.mainMenu();
-	
-	
-	
-/*
-	SetTestList setlist;
+	ui.runTests();
+/*	
+	int listLen = 10000;
+	int listArray[listLen];	
+
+	TestList setlist;
 	SortAlgs sortalgs;
 	
 	setlist.bestCase(listLen);
@@ -50,7 +51,7 @@ int main() {
 	std::cout << "start best case" << std::endl;
 	sortalgs.insertionSort(listLen, listArray);
 	
-	setlist.listToArray(1, listArray);	
+	setlist.listToArray(1, listArray);
 	std::cout << "start worst case" << std::endl;	
 	sortalgs.insertionSort(listLen, listArray);
 	
