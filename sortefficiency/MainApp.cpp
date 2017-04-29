@@ -10,8 +10,8 @@
 #include<iostream>
 
 #include "userinterface.h"
-#include "testlist.h"
-#include "sortalgs.h"
+// #include "testlist.h"
+// #include "sortalgs.h"
 
 
 int main() {	

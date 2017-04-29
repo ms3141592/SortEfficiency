@@ -80,5 +80,6 @@ void TestList::listToArray(int l, int *arr) {
 		//arr[count] = stoi(line); // conver string to int!!!! and make array
 		count++;
 	} 	 
+	myfile.close();
 }
 #endif
