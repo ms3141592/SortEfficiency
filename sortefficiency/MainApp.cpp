@@ -20,7 +20,10 @@ int main() {
 	UserInterface ui;
 	
 	ui.runTests();
-/*	
+	
+	return 0;
+}
+/*	1
 	int listLen = 10000;
 	int listArray[listLen];	
 
@@ -72,7 +75,7 @@ int main() {
 	setlist.listToArray(2, listArray);	
 	std::cout << "start average case" << std::endl;	
 	sortalgs.quickSortCall(listLen, listArray);	
-*/
+
 	return 0;
 }
-
+*/

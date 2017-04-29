@@ -7,8 +7,6 @@
 
 using std::cin;
 
-
-
 class UserInterface {
 private:
 	bool menu, game, generate, sort, stats;
@@ -25,6 +23,7 @@ private:
 	void sortData(int);
 	void runBubbleSort(int);
 	void runInsertionSort(int);
+	void runQuickSort(int);
 public:
 	UserInterface();
 	void runTests();
@@ -58,8 +57,8 @@ void UserInterface::mainMenu() {
 			sort = true;
 			break;
 		case 3:
-			menu = false;
-			stats = true;
+		//	menu = false;
+		//	stats = true;
 			break;
 		case 4:
 			menu = false;
@@ -192,6 +191,10 @@ void UserInterface::sortData(int choice) {
 			break;
 		case 5:
 			// quickSort
+			cout << "\tbefore runInsertionSort() element size 0 = " << elementSize << endl; // test
+
+			runInsertionSort(testChoice);
+			cout << "\t after runQuickSort() element size 3 = " << elementSize << endl; // test
 			break;
 	}
 }
@@ -305,6 +308,67 @@ void UserInterface::runInsertionSort(int testChoice) {
 			tlist.listToArray(2, arrayList);
 			std::cout << "start average case" << std::endl;		
 			runTime = salgs.insertionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+	
+			break;
+		case 5:
+			menu = true;
+			sort = false;
+			break;
+		default:
+			cout << "invalid entry\n";
+			break;
+	}
+}
+
+void UserInterface::runQuickSort(int testChoice) {
+	double runTime;
+	switch(testChoice) {
+		case 1:
+			tlist.listToArray(0, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.quickSortCall(elementSize, arrayList);
+			cout << "\tafter runQuickSort() element size 2 = " << elementSize << endl; // test
+			
+			cout << runTime << " seconds\n";
+			break;
+		case 2:
+			tlist.listToArray(1, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+
+			
+			cout << "start worst case" << std::endl;				
+			runTime = salgs.quickSortCall(elementSize, arrayList);
+				cout << "\tafter runQuickSort() element size 2 = " << elementSize << endl; // test
+				
+			cout << runTime << " seconds\n";			
+			break;
+		case 3:
+			tlist.listToArray(2, arrayList);
+			cout << "\tafter listToArray() element size 1 = " << elementSize << endl; // test
+			
+			std::cout << "start average case" << std::endl;
+			runTime = salgs.quickSortCall(elementSize, arrayList);
+			cout << "\tafter quickSortCall() element size 2 = " << elementSize << endl; // test
+			
+			cout << runTime << " seconds\n";
+			break;
+		case 4:
+			tlist.listToArray(0, arrayList);
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.quickSortCall(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+			
+			tlist.listToArray(1, arrayList);
+			std::cout << "start worst case" << std::endl;		
+			runTime = salgs.quickSortCall(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+	
+			tlist.listToArray(2, arrayList);
+			std::cout << "start average case" << std::endl;		
+			runTime = salgs.quickSortCall(elementSize, arrayList);
 			cout << runTime << " seconds\n";
 	
 			break;
