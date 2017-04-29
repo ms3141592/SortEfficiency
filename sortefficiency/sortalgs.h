@@ -25,14 +25,14 @@ double SortAlgs::bubbleSort(int len, int *arr) {
 	_start = clock(); // start timing
 	
 	int swap, temp;
-	for(int i = 0; i < len; i++) {
+	for(int i = len-1; i > 0; i--) {
 		swap = 0;
-		for(int j = 0; j < len; j++) {
-			if(arr[j] < arr[j-1]) {
+		for(int j = 1; j <= i; j++) {
+			if(arr[j-1] > arr[j]) {
 				swap = 1; // the array is not yet sorted
-				temp = arr[j];
+				temp = arr[j-1];
 				arr[j-1] = arr[j];
-				arr[j-1] = temp;
+				arr[j] = temp;
 			}	
 		}
 		if(swap==0) { // the array is sorted 
@@ -55,7 +55,7 @@ double SortAlgs::insertionSort(int len, int *arr) {
 		index = arr[i];
 		j = i;
 		
-		while( (j > -1) && (arr[j-1] > index)) {
+		while( (j > 0) && (arr[j-1] > index)) {
 			arr[j] = arr[j-1];
 			j = j - 1;
 		}
@@ -76,39 +76,38 @@ void SortAlgs::quickSort(int min, int max, int *arr) {
 	pivot = arr[min];
 	
 	while(min < max) {
-		while( (arr[max] >= pivot) && (min < max)) {
+		while( (arr[max] >= pivot) && (min < max) ) {
 			max--;
 		}
 		if (min != max) {
 			arr[min] = arr[max];
 			min++;
 		}
-		while( (arr[min] <= pivot) && (min < max)) {
+		while( (arr[min] <= pivot) && (min < max) ) {
 			min++;
 		}
 		if(min != max) {
 			arr[max] = arr[min];
 			max--;
-		}		
+		}
 	}
-	
 	arr[min] = pivot;
-	int m_pivot = min;
-	int m_min = _min;
-	int m_max = _max;
-	
-	if(m_min < m_pivot) {
-		quickSort(m_min, m_pivot-1, arr);
+	pivot = min;
+	min = _min;
+	max = _max;
+	if(min < pivot) {
+		quickSort(min, pivot-1, arr);
 	}
-	if(m_max > m_pivot) {
-		quickSort(m_pivot+1, m_max, arr);
-	}	
+	if(max > pivot) {
+		quickSort(pivot+1, max, arr);
+	}
+
 }
 
 double SortAlgs::quickSortCall(int len, int *arr) {
 	_start = clock(); // start timing
 	
-	quickSort(0, len, arr);
+	quickSort(0, len-1, arr);
 	
 	_end = clock(); // end timing
 	_duration = ((double)(_end - _start))/CLOCKS_PER_SEC; // compute to seconds		
