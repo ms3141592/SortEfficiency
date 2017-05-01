@@ -10,9 +10,9 @@ using std::cin;
 class UserInterface {
 private:
 	bool menu, game, generate, sort, stats;
-	int elementSize = 0;
+	int elementSize;
 	
-	int arrayList[500000] = {0};
+	int arrayList[500000];
 	TestList tlist;
 	SortAlgs salgs;
 	
@@ -24,12 +24,14 @@ private:
 	void runBubbleSort(int);
 	void runInsertionSort(int);
 	void runQuickSort(int);
+	void runSelectionSort(int);
 public:
 	UserInterface();
 	void runTests();
 };
 
 UserInterface::UserInterface() {
+	elementSize = 0;
 	menu = true;
 	game = true; 
 	generate = false;
@@ -44,7 +46,7 @@ void UserInterface::mainMenu() {
 	cout << "**Element size: " << elementSize << endl 
 		<< "(1) Generate Data\n" // newData function
 		<< "(2) Sort Data\n" // sortData function
-		<< "(3) Show Statistics\n" // showStatistics function ??, save to txt
+		<< "(3) Show Statistics\n" // showStatistics function ??, save to .txt
 		<< "(4) QUIT\n>> ";
 	cin >> choice;
 	
@@ -129,7 +131,8 @@ void UserInterface::newData(int choice) {
 			cout << "average_case.txt created with " << elementSize << " elements\n";
 			break;
 	}
-	generateMenu();	
+	menu = true;
+	generate = false;
 }
 
 void UserInterface::sortdataMenu() {
@@ -138,9 +141,9 @@ void UserInterface::sortdataMenu() {
 		<< "-------------\n\n";
 	cout << "**Element size: " << elementSize << endl
 		<< "(1) Bubble\n" // 
-		<< "(2) Selection\n" // not active
+		<< "(2) Selection\n" // 
 		<< "(3) Insertion\n" //
-		<< "(4) Merge\n" // not active
+		<< "(4) Merge - *not active\n" // not active
 		<< "(5) Quick\n" // not active
 		<< "(6) Main Menu\n>> ";
 	cin >> choice;
@@ -181,7 +184,7 @@ void UserInterface::sortData(int choice) {
 			break;
 		case 2:
 			// selectionSort
-
+			runSelectionSort(testChoice);
 			break;
 		case 3:
 			// insertrionSort
@@ -232,8 +235,7 @@ void UserInterface::runBubbleSort(int testChoice) {
 			tlist.listToArray(2, arrayList);
 			std::cout << "start average case" << std::endl;		
 			runTime = salgs.bubbleSort(elementSize, arrayList);
-			cout << runTime << " seconds\n";
-	
+			cout << runTime << " seconds\n";	
 			break;
 		case 5:
 			menu = true;
@@ -280,8 +282,7 @@ void UserInterface::runInsertionSort(int testChoice) {
 			tlist.listToArray(2, arrayList);
 			std::cout << "start average case" << std::endl;		
 			runTime = salgs.insertionSort(elementSize, arrayList);
-			cout << runTime << " seconds\n";
-	
+			cout << runTime << " seconds\n";	
 			break;
 		case 5:
 			menu = true;
@@ -328,8 +329,54 @@ void UserInterface::runQuickSort(int testChoice) {
 			tlist.listToArray(2, arrayList);
 			std::cout << "start average case" << std::endl;		
 			runTime = salgs.quickSortCall(elementSize, arrayList);
+			cout << runTime << " seconds\n";	
+			break;
+		case 5:
+			menu = true;
+			sort = false;
+			break;
+		default:
+			cout << "invalid entry\n";
+			break;
+	}
+}
+
+void UserInterface::runSelectionSort(int testChoice) {
+	double runTime;
+	switch(testChoice) {
+		case 1:
+			tlist.listToArray(0, arrayList);
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.selectionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+			break;
+		case 2:
+			tlist.listToArray(1, arrayList);
+			cout << "start worst case" << std::endl;				
+			runTime = salgs.selectionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";			
+			break;
+		case 3:
+			tlist.listToArray(2, arrayList);
+			std::cout << "start average case" << std::endl;
+			runTime = salgs.selectionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+			break;
+		case 4:
+			tlist.listToArray(0, arrayList);
+			std::cout << "start best case" << std::endl;				
+			runTime = salgs.selectionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";
+			
+			tlist.listToArray(1, arrayList);
+			std::cout << "start worst case" << std::endl;		
+			runTime = salgs.selectionSort(elementSize, arrayList);
 			cout << runTime << " seconds\n";
 	
+			tlist.listToArray(2, arrayList);
+			std::cout << "start average case" << std::endl;		
+			runTime = salgs.selectionSort(elementSize, arrayList);
+			cout << runTime << " seconds\n";	
 			break;
 		case 5:
 			menu = true;

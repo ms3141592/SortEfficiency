@@ -40,8 +40,7 @@ void TestList::printToFile(int i, int l) {
 void TestList::bestCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[0]);
-	myfile.close();
-	
+	myfile.close();	
 	for(int i = 1; i <= len; i++) {
 		printToFile(i, 0);
 	}
@@ -50,8 +49,7 @@ void TestList::bestCase(int len) {
 void TestList::worstCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[1]);
-	myfile.close();
-	
+	myfile.close();	
 	for(int i = len; i > 0; i--) {
 		printToFile(i, 1);
 	}
@@ -60,8 +58,7 @@ void TestList::worstCase(int len) {
 void TestList::averageCase(int len) {
 	// creat empty file
 	std::ofstream myfile(_caseList[2]);
-	myfile.close();
-	
+	myfile.close();	
 	int ranNum;	
 	for(int i = 1; i <= len; i++) {
 		ranNum = (rand()%len+1);

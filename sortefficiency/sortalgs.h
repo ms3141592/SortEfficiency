@@ -19,6 +19,7 @@ public:
 	double bubbleSort(int, int*);
 	double insertionSort(int, int*);
 	double quickSortCall(int, int*);
+	double selectionSort(int, int*);
 };
 
 double SortAlgs::bubbleSort(int len, int *arr) {
@@ -109,6 +110,27 @@ double SortAlgs::quickSortCall(int len, int *arr) {
 	
 	quickSort(0, len-1, arr);
 	
+	_end = clock(); // end timing
+	_duration = ((double)(_end - _start))/CLOCKS_PER_SEC; // compute to seconds		
+//	cout << _duration << endl;
+	return _duration;
+}
+
+double SortAlgs::selectionSort(int len, int *arr) {
+	_start = clock(); // start timing
+	int min, temp;
+	
+	for(int i = 0; i < len-1; i++) {
+		min = i;
+		for(int j = i+1; j < len; j++) {
+			if(arr[j] < arr[min]) {
+				min = j;
+			}
+		}
+		temp = arr[i];
+		arr[i] = arr[min];
+		arr[min] = temp;
+	}
 	_end = clock(); // end timing
 	_duration = ((double)(_end - _start))/CLOCKS_PER_SEC; // compute to seconds		
 //	cout << _duration << endl;
