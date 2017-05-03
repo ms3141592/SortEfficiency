@@ -16,7 +16,6 @@ using std::endl;
 class TestList {
 private:
 	string _caseList[3] = {"best_case.txt", "worst_case.txt", "average_case.txt"};
-	void printToFile(int, int);
 public:
 	TestList();
 	void bestCase(int);
@@ -26,44 +25,49 @@ public:
 };
 
 TestList::TestList() {
-	srand(time(0));	
-}
-
-void TestList::printToFile(int i, int l) {	
-	std::ofstream myfile(_caseList[l], std::ios::app);
-	if (myfile.is_open()) {
-		myfile << i << "\n";
-		myfile.close();
-	}
+	srand(time(0));
+	std::ofstream myfile(_caseList[0]);
+	myfile.close();
+	
+	myfile.open(_caseList[1]);
+	myfile.close();	
+	
+	myfile.open(_caseList[2]);
+	myfile.close();	
 }
 
 void TestList::bestCase(int len) {
-	// creat empty file
-	std::ofstream myfile(_caseList[0]);
-	myfile.close();	
+
+	std::ofstream myfile(_caseList[0], std::ios::app);
+	
 	for(int i = 1; i <= len; i++) {
-		printToFile(i, 0);
+		if (myfile.is_open()) {
+			myfile << i << "\n";		
+		}
 	}
+	myfile.close();
 }
 
 void TestList::worstCase(int len) {
-	// creat empty file
-	std::ofstream myfile(_caseList[1]);
-	myfile.close();	
+	std::ofstream myfile(_caseList[1], std::ios::app);
 	for(int i = len; i > 0; i--) {
-		printToFile(i, 1);
+		if (myfile.is_open()) {
+			myfile << i << "\n";		
+		}
 	}
+	myfile.close();
 }
 
 void TestList::averageCase(int len) {
-	// creat empty file
-	std::ofstream myfile(_caseList[2]);
-	myfile.close();	
+	std::ofstream myfile(_caseList[2], std::ios::app);
 	int ranNum;	
 	for(int i = 1; i <= len; i++) {
 		ranNum = (rand()%len+1);
-		printToFile(ranNum, 2);
+		if (myfile.is_open()) {
+			myfile << ranNum << "\n";		
+		}
 	}
+	myfile.close();
 }
 
 void TestList::listToArray(int l, int *arr) {
